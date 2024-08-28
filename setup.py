@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='jin-utils',
-    version='0.1.1',
+    name='jin_utils',
+    version='0.1',
     author='Huaqing Jin',
     author_email='kevinjin0423@gmail.com',
     description='The package contains some useful functions for my daily work',

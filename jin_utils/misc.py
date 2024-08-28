@@ -2,6 +2,28 @@ import numpy as np
 import pickle
 from easydict import EasyDict as edict
 import logging
+import os
+from pathlib import Path
+
+def get_mypkg_path(max_iter=5):
+    """Find the mypkg folder under the current working directory 
+    args: 
+        - max_iter: int, the maximum number of iterations to go up the directory tree
+    """
+    work_path = Path(os.getcwd())
+    cur_path = work_path
+
+    mypkg_path = None
+    # find the mypkg folder under work_path
+    for i in range(max_iter):
+        if (cur_path/"mypkg").exists():
+            mypkg_path = cur_path/"mypkg"
+            break
+        else: 
+            cur_path = cur_path.parent
+    if mypkg_path is None:
+        raise FileNotFoundError("Cannot find mypkg folder")
+    return str(mypkg_path)
 
 def _set_verbose_level(verbose, logger):
     """Set the verbose level of logger
